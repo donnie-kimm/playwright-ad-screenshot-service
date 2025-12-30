@@ -39,6 +39,12 @@ Edit `config.json` to configure which websites to monitor:
       "url": "https://example.com",
       "selector": "#advertisement",
       "enabled": true
+    },
+    {
+      "name": "News Site",
+      "url": "https://news-site.com",
+      "selector": "#sidebar-ad, .ad-container",
+      "enabled": true
     }
   ],
   "settings": {
@@ -60,8 +66,14 @@ Edit `config.json` to configure which websites to monitor:
 #### Websites Array
 - `name`: Friendly name for the website (used in filenames)
 - `url`: The website URL to screenshot
-- `selector`: CSS selector for the specific element to capture (use `"body"` or omit for full page)
+- `selector`: CSS selector for the specific element to capture (use `"body"` for full page, or target specific ads like `"#advertisement"`, `".ad-banner"`, `"#sidebar-ad"`)
 - `enabled`: Set to `true` to enable monitoring for this website
+
+**Targeting Subsections:**
+- To capture only ads: `"selector": "#advertisement"` or `"selector": ".ad-container"`
+- To capture sidebar: `"selector": "#sidebar"`
+- To capture specific section: `"selector": "section[data-ad]"`
+- Full page: `"selector": "body"` (default)
 
 #### Settings
 - `screenshotInterval`: Time between screenshots in milliseconds (default: 300000 = 5 minutes)
@@ -73,6 +85,8 @@ Edit `config.json` to configure which websites to monitor:
 
 ## Usage
 
+### Standard Mode (Periodic Screenshots)
+
 1. **Configure your websites** in `config.json`
 2. **Start the service:**
    ```bash
@@ -83,6 +97,53 @@ The service will:
 - Take an initial screenshot for each enabled website
 - Continue taking screenshots at the specified interval
 - Save screenshots with timestamps in the format: `website-name_YYYY-MM-DDTHH-MM-SS-sssZ.png`
+
+### Monitoring Mode (Detect Ad Refresh Behavior)
+
+Use monitoring mode to detect when ads actually change on a page. This keeps the page open and takes periodic screenshots to detect changes.
+
+1. **Enable monitoring mode** in `config.json`:
+   ```json
+   "monitoringMode": {
+     "enabled": true,
+     "duration": 300000,
+     "screenshotInterval": 15000
+   }
+   ```
+
+2. **Start the service:**
+   ```bash
+   npm start
+   ```
+
+Monitoring mode will:
+- Load the page once and keep it open
+- Take screenshots every 15 seconds (configurable)
+- Monitor for 5 minutes (configurable)
+- Compare screenshots to detect changes
+- Only save screenshots when changes are detected
+- Report how often ads actually refresh
+
+**Monitoring Mode Settings:**
+- `enabled`: Set to `true` to enable monitoring mode
+- `duration`: How long to monitor (in milliseconds). Default: 300000 (5 minutes)
+- `screenshotInterval`: How often to take screenshots (in milliseconds). Default: 15000 (15 seconds)
+- `reloadPage`: Set to `true` to reload the page before each screenshot (better for detecting ad refreshes). Default: `false` (keeps page open)
+- `reloadWaitTime`: How long to wait after reload before taking screenshot (in milliseconds). Default: 3000 (3 seconds)
+- `strictComparison`: Set to `true` to detect even tiny changes. Default: `false` (ignores minor rendering differences <1%)
+
+**Reload Mode vs Keep-Open Mode:**
+- **Reload Mode** (`reloadPage: true`): Reloads the page before each screenshot. Best for sites where ads only refresh on page reload (like news sites). Recommended interval: 30-60 seconds.
+- **Keep-Open Mode** (`reloadPage: false`): Keeps the page open and monitors for dynamic changes. Best for sites with JavaScript-based ad rotation. Recommended interval: 15 seconds.
+
+**Note:** All screenshots are saved regardless of whether changes are detected.
+
+After monitoring, you'll see:
+- Total screenshots taken
+- Number of changes detected
+- Average time between changes
+
+Use this information to set the optimal `screenshotInterval` for standard mode!
 
 ## Example: Monitoring an Advertisement
 

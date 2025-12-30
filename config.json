@@ -1,14 +1,26 @@
 {
   "websites": [
     {
-      "name": "Guitar Tabs",
-      "url": "https://tabs.ultimate-guitar.com/tab/phil-wickham/christ-is-risen-chords-2442845",
+      "name": "Korea Times",
+      "url": "http://www.koreatimes.com",
       "selector": "body",
       "enabled": true
-    }
+    },
+    {
+      "name": "World Journal",
+      "url": "https://www.worldjournal.com/wj/cate/la",
+      "selector": "body",
+      "enabled": true
+    },
+    {
+      "name": "Korea Daily",
+      "url": "https://www.koreadaily.com",
+      "selector": "body",
+      "enabled": true
+    } 
   ],
   "settings": {
-    "screenshotInterval": 10000,
+    "screenshotInterval": 60000,
     "screenshotDirectory": "./screenshots",
     "headless": true,
     "viewport": {
@@ -16,9 +28,17 @@
       "height": 1080
     },
     "waitUntil": "load",
-    "navigationTimeout": 30000,
+    "navigationTimeout": 60000,
     "waitForSelector": null,
-    "waitTime": 5000
+    "waitTime": 10000,
+    "monitoringMode": {
+      "enabled": true,
+      "duration": 300000, 
+      "screenshotInterval": 45000,
+      "reloadPage": true,
+      "reloadWaitTime": 5000,
+      "strictComparison": false
+    }
   }
 }
 
