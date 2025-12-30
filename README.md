@@ -2,6 +2,86 @@
 
 A cloud-ready service for periodically taking screenshots of advertisements on websites using Playwright.
 
+# Donnie's Notes
+
+밑애 쓴건 AI니까 딱히 안 일거도돼
+
+Step 1. Install Dependencies: 
+- press Terminal (cmd + `)
+- write this code: npm install
+- write this code: npm run install-browsers
+
+Step 2. Choose Your Websites
+- in files, click on config.json
+- follow this format: 
+  "websites": [
+    {
+      "name": "Korea Times",
+      "url": "http://www.koreatimes.com",
+      "selector": "body",
+      "enabled": true
+    },
+    {
+      "name": "World Journal",
+      "url": "https://www.worldjournal.com/wj/cate/la",
+      "selector": "body",
+      "enabled": true
+    },
+    {
+      "name": "Korea Daily",
+      "url": "https://www.koreadaily.com",
+      "selector": "body",
+      "enabled": true
+    } 
+  ],
+- 여기 보면, name 은 엄마가 원한 파일 내임이야. url 은 엄마가 원하는 website 으고
+
+Step 3: Choosing Time Limit:
+- in files, click on config.json
+- Look at this format:
+"settings": {
+    "screenshotInterval": 60000,
+    "screenshotDirectory": "./screenshots",
+    "headless": true,
+    "viewport": {
+      "width": 1920,
+      "height": 1080
+    },
+    "waitUntil": "load",
+    "navigationTimeout": 60000,
+    "waitForSelector": null,
+    "waitTime": 10000,
+    "monitoringMode": {
+      "enabled": true,
+      "duration": 300000, 
+      "screenshotInterval": 45000,
+      "reloadPage": true,
+      "reloadWaitTime": 5000,
+      "strictComparison": false
+    }
+  }
+
+- 엄마는 여기서 시간 죵료를 골르는거야. option 두가지 있여.
+- If you want a time limit, then only change values under "MonitoringMode" (시간은 밀리초)
+  - 중요한건 "enabled" true 이면, 타임리밋 스는거야 (duration)
+- if you don't want a time limit, then "enabled": false
+  - "settings" 밑애있는 "screenshot interval 서. 
+
+Step 4: Start the Program
+- go to terminal
+- code: npm start
+
+Step 5: Terminate
+- go to terminal
+- code: Ctrl + C
+
+Step 6: Check Screenshots:
+- it is in the screenshots folder
+
+
+
+
+
 ## Features
 
 - 🎯 **Configurable Websites**: Choose which websites to monitor via `config.json`

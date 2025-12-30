@@ -5,22 +5,10 @@
       "url": "http://www.koreatimes.com",
       "selector": "body",
       "enabled": true
-    },
-    {
-      "name": "World Journal",
-      "url": "https://www.worldjournal.com/wj/cate/la",
-      "selector": "body",
-      "enabled": true
-    },
-    {
-      "name": "Korea Daily",
-      "url": "https://www.koreadaily.com",
-      "selector": "body",
-      "enabled": true
-    } 
+    }
   ],
   "settings": {
-    "screenshotInterval": 60000,
+    "screenshotInterval": 45000,
     "screenshotDirectory": "./screenshots",
     "headless": true,
     "viewport": {
@@ -30,9 +18,9 @@
     "waitUntil": "load",
     "navigationTimeout": 60000,
     "waitForSelector": null,
-    "waitTime": 10000,
+    "waitTime": 5000,
     "monitoringMode": {
-      "enabled": true,
+      "enabled": false,
       "duration": 300000, 
       "screenshotInterval": 45000,
       "reloadPage": true,
