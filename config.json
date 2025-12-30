@@ -1,0 +1,24 @@
+{
+  "websites": [
+    {
+      "name": "Guitar Tabs",
+      "url": "https://tabs.ultimate-guitar.com/tab/phil-wickham/christ-is-risen-chords-2442845",
+      "selector": "body",
+      "enabled": true
+    }
+  ],
+  "settings": {
+    "screenshotInterval": 10000,
+    "screenshotDirectory": "./screenshots",
+    "headless": true,
+    "viewport": {
+      "width": 1920,
+      "height": 1080
+    },
+    "waitUntil": "load",
+    "navigationTimeout": 30000,
+    "waitForSelector": null,
+    "waitTime": 5000
+  }
+}
+

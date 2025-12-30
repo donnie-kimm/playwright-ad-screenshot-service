@@ -1,0 +1,23 @@
+{
+  "name": "playwright-ad-screenshot-service",
+  "version": "1.0.0",
+  "description": "Periodic screenshot service for advertisements using Playwright",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "install-browsers": "npx playwright install"
+  },
+  "keywords": [
+    "playwright",
+    "screenshot",
+    "advertisement",
+    "monitoring"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "playwright": "^1.40.0"
+  }
+}
+

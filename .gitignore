@@ -1,0 +1,10 @@
+node_modules/
+screenshots/
+*.png
+*.jpg
+*.jpeg
+.env
+.DS_Store
+playwright-report/
+test-results/
+
